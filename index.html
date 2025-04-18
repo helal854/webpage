@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Platform - Your Cryptocurrency Calculator Hub</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/custom.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">Crypto Platform</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" id="nav-investment">Investment Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-mining">Mining Calculator</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-reports">Reports</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="nav-export">PDF Export</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <div id="content-area">
+                    <!-- Content will be loaded here dynamically -->
+                    <div class="text-center py-5">
+                        <h1>Welcome to Crypto Platform</h1>
+                        <p class="lead">Your comprehensive cryptocurrency calculator hub</p>
+                        <div class="row mt-5">
+                            <div class="col-md-6 col-lg-3 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Investment Calculator</h5>
+                                        <p class="card-text">Calculate projected returns using compound interest for cryptocurrencies.</p>
+                                        <button class="btn btn-primary" id="btn-investment">Get Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Mining Calculator</h5>
+                                        <p class="card-text">Estimate mining profitability based on hash rate, electricity costs, and network difficulty.</p>
+                                        <button class="btn btn-primary" id="btn-mining">Get Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">Interactive Reports</h5>
+                                        <p class="card-text">Generate customizable reports with dynamic charts and filters.</p>
+                                        <button class="btn btn-primary" id="btn-reports">Get Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3 mb-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">PDF Export</h5>
+                                        <p class="card-text">Export reports to PDF with custom branding and interactive elements.</p>
+                                        <button class="btn btn-primary" id="btn-export">Get Started</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5 py-3">
+        <div class="container text-center">
+            <p>&copy; 2025 Crypto Platform. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="assets/js/lib/jquery.min.js"></script>
+    <script src="assets/js/lib/bootstrap.min.js"></script>
+    <script src="assets/js/lib/chart.min.js"></script>
+    <script src="assets/js/lib/jspdf.min.js"></script>
+    <script src="assets/js/lib/date-fns.min.js"></script>
+    
+    <!-- Utility Scripts -->
+    <script src="assets/js/utils/api-service.js"></script>
+    <script src="assets/js/utils/calculations.js"></script>
+    <script src="assets/js/utils/storage.js"></script>
+    <script src="assets/js/utils/performance.js"></script>
+    <script src="assets/js/utils/test-suite.js"></script>
+    
+    <!-- Component Scripts -->
+    <script src="assets/js/components/investment-calculator.js"></script>
+    <script src="assets/js/components/mining-calculator.js"></script>
+    <script src="assets/js/components/reports.js"></script>
+    <script src="assets/js/components/pdf-export.js"></script>
+    
+    <!-- Main Application Script -->
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

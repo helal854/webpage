@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitcoin Mining Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="calculator-container">
+                    <h2 class="calculator-title">Bitcoin Mining Calculator</h2>
+                    <p class="lead">Estimate mining profitability based on hash rate, electricity costs, and network difficulty.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label for="hash-rate">Hash Rate</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="hash-rate" value="100" min="0.1" step="0.1">
+                                    <select class="form-select" id="hash-rate-unit" style="max-width: 100px;">
+                                        <option value="H/s">H/s</option>
+                                        <option value="KH/s">KH/s</option>
+                                        <option value="MH/s">MH/s</option>
+                                        <option value="GH/s">GH/s</option>
+                                        <option value="TH/s" selected>TH/s</option>
+                                        <option value="PH/s">PH/s</option>
+                                    </select>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="hash-rate-slider" min="1" max="1000" value="100">
+                                    <div class="d-flex justify-content-between">
+                                        <small>1 TH/s</small>
+                                        <small>1000 TH/s</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="power-consumption">Power Consumption</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="power-consumption" value="3500" min="1" step="10">
+                                    <span class="input-group-text">W</span>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="power-consumption-slider" min="100" max="10000" value="3500" step="10">
+                                    <div class="d-flex justify-content-between">
+                                        <small>100 W</small>
+                                        <small>10,000 W</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="electricity-cost">Electricity Cost</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="electricity-cost" value="0.12" min="0.01" max="1" step="0.01">
+                                    <span class="input-group-text">$ per kWh</span>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="electricity-cost-slider" min="0.01" max="0.5" value="0.12" step="0.01">
+                                    <div class="d-flex justify-content-between">
+                                        <small>$0.01</small>
+                                        <small>$0.50</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="pool-fee">Pool Fee</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="pool-fee" value="1" min="0" max="10" step="0.1">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="pool-fee-slider" min="0" max="5" value="1" step="0.1">
+                                    <div class="d-flex justify-content-between">
+                                        <small>0%</small>
+                                        <small>5%</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label>Display Currency</label>
+                                <div class="d-flex align-items-center">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="currency-toggle">
+                                        <label class="form-check-label" for="currency-toggle">
+                                            <span id="currency-label">USD</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="results-container">
+                                <h3>Bitcoin Network Info</h3>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Current Price</p>
+                                        <div class="result-value" id="btc-price">$0.00</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Network Difficulty</p>
+                                        <div class="result-value" id="network-difficulty">0</div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <p>Network Hash Rate</p>
+                                        <div class="result-value" id="network-hashrate">0 TH/s</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Block Reward</p>
+                                        <div class="result-value" id="block-reward">0 BTC</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="results-container mt-4">
+                                <h3>Mining Profitability</h3>
+                                <ul class="nav nav-tabs" id="profitability-tabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="daily-tab" data-bs-toggle="tab" data-bs-target="#daily" type="button" role="tab" aria-controls="daily" aria-selected="true">Daily</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="monthly-tab" data-bs-toggle="tab" data-bs-target="#monthly" type="button" role="tab" aria-controls="monthly" aria-selected="false">Monthly</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="yearly-tab" data-bs-toggle="tab" data-bs-target="#yearly" type="button" role="tab" aria-controls="yearly" aria-selected="false">Yearly</button>
+                                    </li>
+                                </ul>
+                                <div class="tab-content p-3" id="profitability-tab-content">
+                                    <div class="tab-pane fade show active" id="daily" role="tabpanel" aria-labelledby="daily-tab">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p>BTC Mined</p>
+                                                <div class="result-value" id="daily-btc">0 BTC</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Revenue</p>
+                                                <div class="result-value" id="daily-revenue">$0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-6">
+                                                <p>Electricity Cost</p>
+                                                <div class="result-value" id="daily-cost">$0.00</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Profit</p>
+                                                <div class="result-value" id="daily-profit">$0.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="monthly" role="tabpanel" aria-labelledby="monthly-tab">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p>BTC Mined</p>
+                                                <div class="result-value" id="monthly-btc">0 BTC</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Revenue</p>
+                                                <div class="result-value" id="monthly-revenue">$0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-6">
+                                                <p>Electricity Cost</p>
+                                                <div class="result-value" id="monthly-cost">$0.00</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Profit</p>
+                                                <div class="result-value" id="monthly-profit">$0.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="yearly" role="tabpanel" aria-labelledby="yearly-tab">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <p>BTC Mined</p>
+                                                <div class="result-value" id="yearly-btc">0 BTC</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Revenue</p>
+                                                <div class="result-value" id="yearly-revenue">$0.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-3">
+                                            <div class="col-6">
+                                                <p>Electricity Cost</p>
+                                                <div class="result-value" id="yearly-cost">$0.00</div>
+                                            </div>
+                                            <div class="col-6">
+                                                <p>Profit</p>
+                                                <div class="result-value" id="yearly-profit">$0.00</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button class="btn btn-primary" id="save-mining-calculation">Save Calculation</button>
+                                <button class="btn btn-outline-secondary" id="reset-mining-calculator">Reset Calculator</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

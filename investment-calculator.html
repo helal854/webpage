@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Investment Profit Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="calculator-container">
+                    <h2 class="calculator-title">Investment Profit Calculator</h2>
+                    <p class="lead">Calculate projected returns using compound interest for cryptocurrencies.</p>
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="form-group mb-4">
+                                <label for="crypto-select">Select Cryptocurrency</label>
+                                <select class="form-select" id="crypto-select">
+                                    <option value="bitcoin" selected>Bitcoin (BTC)</option>
+                                    <option value="ethereum">Ethereum (ETH)</option>
+                                    <option value="binancecoin">Binance Coin (BNB)</option>
+                                    <option value="cardano">Cardano (ADA)</option>
+                                    <option value="solana">Solana (SOL)</option>
+                                    <option value="ripple">XRP</option>
+                                    <option value="polkadot">Polkadot (DOT)</option>
+                                    <option value="dogecoin">Dogecoin (DOGE)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="currency-select">Display Currency</label>
+                                <select class="form-select" id="currency-select">
+                                    <option value="usd" selected>US Dollar (USD)</option>
+                                    <option value="eur">Euro (EUR)</option>
+                                    <option value="gbp">British Pound (GBP)</option>
+                                    <option value="jpy">Japanese Yen (JPY)</option>
+                                    <option value="cny">Chinese Yuan (CNY)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="initial-investment">Initial Investment</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="currency-symbol">$</span>
+                                    <input type="number" class="form-control" id="initial-investment" value="1000" min="1" step="100">
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="initial-investment-slider" min="100" max="100000" value="1000">
+                                    <div class="d-flex justify-content-between">
+                                        <small>$100</small>
+                                        <small>$100,000</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="interest-rate">Annual Interest Rate (%)</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="interest-rate" value="5" min="0.1" max="1000" step="0.1">
+                                    <span class="input-group-text">%</span>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="interest-rate-slider" min="0.1" max="100" value="5" step="0.1">
+                                    <div class="d-flex justify-content-between">
+                                        <small>0.1%</small>
+                                        <small>100%</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="investment-time">Investment Time</label>
+                                <div class="input-group">
+                                    <input type="number" class="form-control" id="investment-time" value="5" min="1" max="50" step="1">
+                                    <span class="input-group-text">years</span>
+                                </div>
+                                <div class="slider-container mt-2">
+                                    <input type="range" class="slider" id="investment-time-slider" min="1" max="30" value="5">
+                                    <div class="d-flex justify-content-between">
+                                        <small>1 year</small>
+                                        <small>30 years</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="compound-frequency">Compound Frequency</label>
+                                <select class="form-select" id="compound-frequency">
+                                    <option value="1">Annually (1x per year)</option>
+                                    <option value="2">Semi-Annually (2x per year)</option>
+                                    <option value="4">Quarterly (4x per year)</option>
+                                    <option value="12" selected>Monthly (12x per year)</option>
+                                    <option value="365">Daily (365x per year)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <div class="results-container">
+                                <h3>Current Price</h3>
+                                <div class="d-flex align-items-center mb-3">
+                                    <div id="crypto-icon" class="me-2">
+                                        <img src="" alt="Crypto Icon" width="32" height="32" id="crypto-icon-img">
+                                    </div>
+                                    <div>
+                                        <span id="crypto-name">Bitcoin</span>
+                                        <span class="text-muted ms-2" id="crypto-symbol">(BTC)</span>
+                                    </div>
+                                </div>
+                                <div class="result-value mb-4" id="current-price">$0.00</div>
+                                
+                                <h3>Investment Results</h3>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p>Initial Investment</p>
+                                        <div class="result-value" id="result-initial">$0.00</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Final Value</p>
+                                        <div class="result-value" id="result-final">$0.00</div>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        <p>Interest Earned</p>
+                                        <div class="result-value" id="result-interest">$0.00</div>
+                                    </div>
+                                    <div class="col-6">
+                                        <p>Total Return</p>
+                                        <div class="result-value" id="result-return">0%</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container mt-4">
+                                <canvas id="investment-chart"></canvas>
+                            </div>
+                            
+                            <div class="d-grid gap-2 mt-4">
+                                <button class="btn btn-primary" id="save-calculation">Save Calculation</button>
+                                <button class="btn btn-outline-secondary" id="reset-calculator">Reset Calculator</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

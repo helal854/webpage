@@ -1,0 +1,222 @@
+/* Additional responsive design styles for Crypto Platform */
+
+/* Global responsive adjustments */
+@media (max-width: 576px) {
+  .calculator-container {
+    padding: 15px;
+  }
+  
+  .calculator-title {
+    font-size: 1.5rem;
+  }
+  
+  .lead {
+    font-size: 1rem;
+  }
+  
+  .result-value {
+    font-size: 1.5rem;
+  }
+}
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+  
+  .navbar-toggler {
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+/* Touch-friendly controls for mobile */
+@media (max-width: 768px) {
+  .form-control, 
+  .form-select, 
+  .btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    min-height: 44px; /* Minimum touch target size */
+  }
+  
+  .slider {
+    height: 10px; /* Slightly larger for touch */
+  }
+  
+  .slider::-webkit-slider-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .slider::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Increase spacing between form elements */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Make checkboxes and radio buttons more touch-friendly */
+  .form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.15em;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 769px) and (max-width: 992px) {
+  .calculator-container {
+    padding: 20px;
+  }
+}
+
+/* Chart responsiveness */
+@media (max-width: 768px) {
+  .chart-container {
+    height: 250px;
+  }
+}
+
+/* Table responsiveness */
+@media (max-width: 768px) {
+  .table th, 
+  .table td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* PDF Export page responsiveness */
+@media (max-width: 992px) {
+  .pdf-preview-container {
+    max-height: 500px;
+    overflow-y: auto;
+  }
+}
+
+/* Dark mode support */
+.theme-dark {
+  background-color: #222;
+  color: #f8f9fa;
+}
+
+.theme-dark .card {
+  background-color: #333;
+  border-color: #444;
+}
+
+.theme-dark .card-header {
+  background-color: #2c3e50;
+  border-color: #444;
+}
+
+.theme-dark .form-control,
+.theme-dark .form-select {
+  background-color: #444;
+  border-color: #555;
+  color: #f8f9fa;
+}
+
+.theme-dark .table {
+  color: #f8f9fa;
+}
+
+.theme-dark .table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.theme-dark .results-container {
+  background-color: #2c3e50;
+}
+
+/* Print styles for PDF exports */
+@media print {
+  .navbar, 
+  .footer, 
+  .btn, 
+  .form-group,
+  .card-header {
+    display: none !important;
+  }
+  
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  .calculator-container {
+    padding: 0 !important;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+  }
+  
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}
+
+/* Accessibility improvements */
+.btn:focus,
+.form-control:focus,
+.form-select:focus {
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.5);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.5);
+  border-color: #3498db;
+}
+
+/* Skip to content link for screen readers */
+.skip-to-content {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.skip-to-content:focus {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  padding: 10px;
+  background: #3498db;
+  color: white;
+  z-index: 9999;
+}
+
+/* Loading state improvements */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Animation for loading states */
+@keyframes pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0.6; }
+}
+
+.loading {
+  animation: pulse 1.5s infinite;
+}

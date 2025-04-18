@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Export</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="calculator-container">
+                    <h2 class="calculator-title">PDF Export</h2>
+                    <p class="lead">Export reports to PDF with custom branding and interactive elements.</p>
+                    
+                    <div class="row mt-4">
+                        <!-- PDF Options Section -->
+                        <div class="col-md-5">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="mb-0">PDF Options</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group mb-4">
+                                        <label for="export-type">Export Type</label>
+                                        <select class="form-select" id="export-type">
+                                            <option value="single" selected>Single Calculation</option>
+                                            <option value="report">Full Report</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label for="pdf-title">PDF Title</label>
+                                        <input type="text" class="form-control" id="pdf-title" value="Cryptocurrency Calculation Report">
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label>Branding Options</label>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" id="include-branding" checked>
+                                            <label class="form-check-label" for="include-branding">Include branding</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="branding-options">
+                                        <div class="form-group mb-3">
+                                            <label for="company-name">Company Name</label>
+                                            <input type="text" class="form-control" id="company-name" value="Crypto Platform">
+                                        </div>
+                                        
+                                        <div class="form-group mb-3">
+                                            <label for="logo-url">Logo URL (optional)</label>
+                                            <input type="text" class="form-control" id="logo-url" placeholder="https://example.com/logo.png">
+                                        </div>
+                                        
+                                        <div class="form-group mb-4">
+                                            <label>Logo Upload</label>
+                                            <div class="input-group">
+                                                <input type="file" class="form-control" id="logo-upload" accept="image/*">
+                                                <button class="btn btn-outline-secondary" type="button" id="upload-logo">Upload</button>
+                                            </div>
+                                            <div class="form-text">Max file size: 1MB. Recommended size: 200x50px.</div>
+                                        </div>
+                                        
+                                        <div class="form-group mb-3">
+                                            <label for="brand-color">Brand Color</label>
+                                            <input type="color" class="form-control form-control-color" id="brand-color" value="#3498db">
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label for="pdf-language">PDF Language</label>
+                                        <select class="form-select" id="pdf-language">
+                                            <option value="en" selected>English</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                            <option value="de">German</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="zh">Chinese</option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label>Content Options</label>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="include-charts" checked>
+                                            <label class="form-check-label" for="include-charts">Include charts</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="include-tables" checked>
+                                            <label class="form-check-label" for="include-tables">Include tables</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="include-summary" checked>
+                                            <label class="form-check-label" for="include-summary">Include summary</label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group mb-4">
+                                        <label for="footer-text">Footer Text (optional)</label>
+                                        <textarea class="form-control" id="footer-text" rows="2" placeholder="Enter custom footer text"></textarea>
+                                    </div>
+                                    
+                                    <div class="d-grid gap-2">
+                                        <button class="btn btn-primary" id="generate-pdf">Generate PDF</button>
+                                        <button class="btn btn-outline-secondary" id="reset-options">Reset Options</button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="card mt-4">
+                                <div class="card-header">
+                                    <h5 class="mb-0">Save Preferences</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-check form-switch mb-3">
+                                        <input class="form-check-input" type="checkbox" id="save-pdf-preferences" checked>
+                                        <label class="form-check-label" for="save-pdf-preferences">Save PDF preferences</label>
+                                    </div>
+                                    <p class="text-muted small">Your PDF export preferences will be saved for future sessions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- PDF Preview Section -->
+                        <div class="col-md-7">
+                            <div class="card">
+                                <div class="card-header d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">PDF Preview</h5>
+                                    <button class="btn btn-sm btn-outline-secondary" id="refresh-preview">Refresh Preview</button>
+                                </div>
+                                <div class="card-body">
+                                    <div id="pdf-preview" class="pdf-preview-container">
+                                        <div class="text-center py-5" id="preview-placeholder">
+                                            <p class="text-muted">Configure your PDF options and click "Refresh Preview" to see a preview.</p>
+                                        </div>
+                                        <div id="preview-content" style="display: none;">
+                                            <!-- Preview content will be dynamically generated -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info mt-4" role="alert">
+                                <h5 class="alert-heading">PDF Export Tips</h5>
+                                <p>For best results when exporting PDFs:</p>
+                                <ul>
+                                    <li>Use high-resolution images for logos</li>
+                                    <li>Keep titles concise for better formatting</li>
+                                    <li>Preview your PDF before final export</li>
+                                    <li>For multilingual support, ensure proper font selection</li>
+                                </ul>
+                            </div>
+                            
+                            <div id="pdf-loading" class="text-center py-3" style="display: none;">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                                <p class="mt-2">Generating PDF...</p>
+                            </div>
+                            
+                            <div id="pdf-success" class="alert alert-success mt-4" style="display: none;" role="alert">
+                                <h5 class="alert-heading">PDF Generated Successfully!</h5>
+                                <p>Your PDF has been generated and is ready for download.</p>
+                                <hr>
+                                <div class="d-grid gap-2">
+                                    <button class="btn btn-success" id="download-pdf">Download PDF</button>
+                                </div>
+                            </div>
+                            
+                            <div id="pdf-error" class="alert alert-danger mt-4" style="display: none;" role="alert">
+                                <h5 class="alert-heading">Error Generating PDF</h5>
+                                <p id="pdf-error-message">There was an error generating your PDF. Please try again.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
